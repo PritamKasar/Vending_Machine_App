@@ -1,7 +1,6 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
+
 <body>
     <div class="container">
         <h1>Vending Machine</h1>
@@ -18,9 +18,9 @@
                 <p>Gripper Pen</p>
                 <button onclick="addToCart('product1')">Add to Cart</button>
                 <div>
-                    <span>Price: ₹5</span>
-                    <span>Sold: <span id="product1-sold">0</span></span>
-                    <span>Remaining: <span id="product1-remaining">5</span></span>
+                    <span>Price: ₹5</span><br>
+                    <span>Remaining: <span id="product1-sold">0</span></span><br>
+                    <span>Sold: <span id="product1-remaining">5</span></span>
                 </div>
             </div>
             <div class="product" id="product2">
@@ -28,9 +28,9 @@
                 <p>Dairy Milk</p>
                 <button onclick="addToCart('product2')">Add to Cart</button>
                 <div>
-                    <span>Price: ₹5</span>
-                    <span>Sold: <span id="product2-sold">0</span></span>
-                    <span>Remaining: <span id="product2-remaining">5</span></span>
+                    <span>Price: ₹5</span><br>
+                    <span>Remaining: <span id="product2-sold">0</span></span><br>
+                    <span>Sold: <span id="product2-remaining">5</span></span>
                 </div>
             </div>
             <div class="product" id="product3">
@@ -38,9 +38,9 @@
                 <p>Product 3</p>
                 <button onclick="addToCart('product3')">Add to Cart</button>
                 <div>
-                    <span>Price: ₹5</span>
-                    <span>Sold: <span id="product3-sold">0</span></span>
-                    <span>Remaining: <span id="product3-remaining">5</span></span>
+                    <span>Price: ₹5</span><br>
+                    <span>Remaining: <span id="product3-sold">0</span></span><br>
+                    <span>Sold: <span id="product3-remaining">5</span></span>
                 </div>
             </div>
             <div class="product" id="product4">
@@ -48,9 +48,9 @@
                 <p>Product 4</p>
                 <button onclick="addToCart('product4')">Add to Cart</button>
                 <div>
-                    <span>Price: ₹5</span>
-                    <span>Sold: <span id="product4-sold">0</span></span>
-                    <span>Remaining: <span id="product4-remaining">5</span></span>
+                    <span>Price: ₹5</span><br>
+                    <span>Remaining: <span id="product4-sold">0</span></span><br>
+                    <span>Sold: <span id="product4-remaining">5</span></span>
                 </div>
             </div>
         </div>
@@ -60,6 +60,7 @@
             <ul id="cart-items">
                 <!-- Cart items will be added dynamically here -->
             </ul>
+            
             <button onclick="checkout()">Checkout</button>
         </div>
     </div>
@@ -93,19 +94,31 @@
             updateSoldAndRemaining(productId);
             showMessage('Product added to cart');
         }
-
         function updateSoldAndRemaining(productId) {
             var sold = document.getElementById(productId + '-sold');
             var remaining = document.getElementById(productId + '-remaining');
             if (sold && remaining) {
                 var quantity = cart[productId] || 0;
-                var totalSold = quantity;
-                var remainingQuantity = 5 - quantity;
+                console.log(quantity)
+                var totalSold = 5 - quantity;
+                console.log(totalSold)
+                var remainingQuantity = quantity;
                 sold.textContent = totalSold;
                 remaining.textContent = Math.max(0, remainingQuantity);
             }
         }
 
+        // function updateSoldAndRemaining(productId) {
+        //     var sold = document.getElementById(productId + '-sold');
+        //     var remaining = document.getElementById(productId + '-remaining');
+        //     if (sold && remaining) {
+        //         var quantity = cart[productId] || 0;
+        //         var totalSold = quantity;
+        //         var remainingQuantity = 5 - quantity;
+        //         sold.textContent = totalSold;
+        //         remaining.textContent = Math.max(0, remainingQuantity);
+        //     }
+        // }
         function updateCart() {
             var cartItems = document.getElementById('cart-items');
             cartItems.innerHTML = '';
@@ -117,22 +130,60 @@
                 var totalPrice = quantity * price;
                 totalAmount += totalPrice;
                 var listItem = document.createElement('li');
+                listItem.id = 'cart-item' + productId.slice(-1);
+                var cartItem = document.createElement('li');
+                cartItem.id = 'cart-item' + productId.slice(-1);
+                var removeButton = document.createElement('button');
+                removeButton.textContent = 'Reduce Quantity ';
+                removeButton.onclick = function () {
+                    removeFromCart(productId);
+                };
+                cartItem.appendChild(document.createTextNode(productName + ' '));
                 listItem.textContent = productName + ' x ' + quantity + ' - ₹' + totalPrice;
+                cartItems.appendChild(removeButton);
                 cartItems.appendChild(listItem);
             }
             document.getElementById('total-amount').textContent = totalAmount;
         }
+        function removeFromCart(productId) {
+            if (cart[productId]) {
+                cart[productId]--;
+                if (cart[productId] === 0) {
+                    delete cart[productId];
+                }
+                updateCart();
+                updateSoldAndRemaining(productId);
+                showMessage('Product removed from cart');
+            }
+        }
+
+        // function updateCart() {
+        //     var cartItems = document.getElementById('cart-items');
+        //     cartItems.innerHTML = '';
+        //     var totalAmount = 0;
+        //     for (var productId in cart) {
+        //         var quantity = cart[productId];
+        //         var productName = document.getElementById(productId).querySelector('p').textContent;
+        //         var price = 5; // Assuming each product costs ₹5
+        //         var totalPrice = quantity * price;
+        //         totalAmount += totalPrice;
+        //         var listItem = document.createElement('li');
+        //         listItem.textContent = productName + ' x ' + quantity + ' - ₹' + totalPrice;
+        //         cartItems.appendChild(listItem);
+        //     }
+        //     document.getElementById('total-amount').textContent = totalAmount;
+        // }
 
         function checkout() {
             var totalAmount = document.getElementById('total-amount').textContent;
             var cartItems = [];
-            var cartItem =[];
+            var cartItem = [];
             var productId;
             console.log(cart);
-            cartItem.push({ cart});
+            cartItem.push({ cart });
             console.log(cartItem)
-            
-    
+
+
             // for ( productId in cart) {
             //     if (cart.hasOwnProperty(productId)) {
             //         var quantity = cart[productId];
@@ -145,58 +196,59 @@
             //         console.log(cartItem);
             //         // console.log(pro?ductName);
             //     }
-                
-            
+
+
             console.log(cartItems)
             fetch('/create_order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ amount:[cart,totalAmount] })           
+                body: JSON.stringify({ amount: [cart, totalAmount] })
 
-                
-                
-                
+
+
+
 
             })
-            .then(response => response.json())
-            .then(data => {
-                var options = {
-                    "key": razorpay_key,
-                    "amount": data.amount,
-                    "currency": "INR",
-                    "name": "Vending Machine",
-                    "image":"https://www.svkm-iot.ac.in/wp-content/uploads/2023/10/1000100148.png",
-                    "description": "Test Transaction",
-                    "order_id": data.id,
-                    "handler": function (response){
-                        alert("Payment Successful: " + response.razorpay_payment_id);
-                    },
-                    "prefill": {
-                        "name": "Malti Bhokare",
-                        "email": "malatibhokare2003@gmail.com",
-                        "contact": "9284600122"
-                    },
-                    "notes": {
-                        "address": "Vending Machine Address"
-                    },
-                    "theme": {
-                        "color": "#1C03FF"
-                    }
-                };
-                var rzp1 = new Razorpay(options);
-                rzp1.open();
-            });
+                .then(response => response.json())
+                .then(data => {
+                    var options = {
+                        "key": razorpay_key,
+                        "amount": data.amount,
+                        "currency": "INR",
+                        "name": "Vending Machine",
+                        "image": "https://www.svkm-iot.ac.in/wp-content/uploads/2023/10/1000100148.png",
+                        "description": "Test Transaction",
+                        "order_id": data.id,
+                        "handler": function (response) {
+                            alert("Payment Successful: " + response.razorpay_payment_id);
+                        },
+                        "prefill": {
+                            "name": "Malti Bhokare",
+                            "email": "malatibhokare2003@gmail.com",
+                            "contact": "9284600122"
+                        },
+                        "notes": {
+                            "address": "Vending Machine Address"
+                        },
+                        "theme": {
+                            "color": "#1C03FF"
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                });
         }
 
         function showMessage(message) {
             var messageDiv = document.getElementById('message');
             messageDiv.textContent = message;
-            setTimeout(function() {
+            setTimeout(function () {
                 messageDiv.textContent = '';
             }, 3000); // Hide message after 3 seconds
         }
     </script>
 </body>
+
 </html>
