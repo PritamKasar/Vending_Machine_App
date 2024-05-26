@@ -35,7 +35,7 @@
             </div>
             <div class="product" id="product3">
                 <img src="{{ url_for('static', filename='images (3).jpeg') }}" alt="Product 3">
-                <p>Product 3</p>
+                <p>potato chips</p>
                 <button onclick="addToCart('product3')">Add to Cart</button>
                 <div>
                     <span>Price: ₹5</span><br>
@@ -44,11 +44,11 @@
                 </div>
             </div>
             <div class="product" id="product4">
-                <img src="{{ url_for('static', filename='images (4).jpeg') }}" alt="Product 4">
-                <p>Product 4</p>
+                <img src="{{ url_for('static', filename='images (4).jpeg') }}" alt="Dark Chocolate">
+                <p>Dark Chocolate</p>
                 <button onclick="addToCart('product4')">Add to Cart</button>
                 <div>
-                    <span>Price: ₹5</span><br>
+                    <span>Price: ₹10</span><br>
                     <span>Remaining: <span id="product4-sold">0</span></span><br>
                     <span>Sold: <span id="product4-remaining">5</span></span>
                 </div>
@@ -126,7 +126,7 @@
             for (var productId in cart) {
                 var quantity = cart[productId];
                 var productName = document.getElementById(productId).querySelector('p').textContent;
-                var price = 5; // Assuming each product costs ₹5
+                var price = 10; // Assuming each product costs ₹5
                 var totalPrice = quantity * price;
                 totalAmount += totalPrice;
                 var listItem = document.createElement('li');
