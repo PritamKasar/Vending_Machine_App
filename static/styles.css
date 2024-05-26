@@ -140,3 +140,24 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
     background-color:}
+    footer {
+        background-color: #ffffff75;
+        color: black;
+        padding: 20px;
+        text-align: center;
+      }
+      
+      footer a {
+        color: black;
+        text-decoration: underline;
+        margin: 0 10px;        
+        text-decoration: none;
+      }
+      
+      footer a:hover {
+        color: rgb(90, 57, 255);
+      }
+      
+      footer div {
+        margin-top: 10px;
+      }
