@@ -4,8 +4,8 @@ import razorpay
 app = Flask(__name__)
 
 # Replace with your Razorpay API key and secret
-RAZORPAY_API_KEY = "rzp_test_LUNVA7oxZEDJud"
-RAZORPAY_API_SECRET = "usqODJsQruTwxAdjS68O7Xc9"
+RAZORPAY_API_KEY = "rzp_live_X0kPZAwgC5N2p4"
+RAZORPAY_API_SECRET = "moLAbB1Jd5ghgufOp4S2jVbk"
 
 razorpay_client = razorpay.Client(auth=(RAZORPAY_API_KEY, RAZORPAY_API_SECRET))
 

@@ -188,6 +188,9 @@
 
         function checkout() {
             var totalAmount = document.getElementById('total-amount').textContent;
+            var tax=((2.1*parseFloat(totalAmount))/100);
+            totalAmount=(parseFloat(totalAmount)+parseFloat(tax));
+            console.log((totalAmount))
             var cartItems = [];
             var cartItem = [];
             var productId;
@@ -198,7 +201,7 @@
 
             // for ( productId in cart) {
             //     if (cart.hasOwnProperty(productId)) {
-            //         var quantity = cart[productId];
+                    // var quantity = math.ceil
             //         var productName = document.getElementById(productId).querySelector('p').textContent;
             //         cartItem.push({ productId: productId, productName: productName, quantity: quantity });
             //         cartItems.push(cartItem);
