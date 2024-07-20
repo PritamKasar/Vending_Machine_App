@@ -188,7 +188,7 @@
 
         function checkout() {
             var totalAmount = document.getElementById('total-amount').textContent;
-            var tax=((2.1*parseFloat(totalAmount))/100);
+            var tax=((2.5*parseFloat(totalAmount))/100);
             totalAmount=(parseFloat(totalAmount)+parseFloat(tax));
             console.log((totalAmount))
             var cartItems = [];
