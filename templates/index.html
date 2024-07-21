@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Vending Machine</h1>
         <div class="products">
-            <div class="product" id="product1">
+            <!-- <div class="product" id="product1">
                 <img src="{{ url_for('static', filename='Gripper.jpg') }}" alt="Product 1">
                 <p>Gripper Pen</p>
                 <button onclick="addToCart('product1')">Add to Cart</button>
@@ -22,10 +22,20 @@
                     <span>Remaining: <span id="product1-sold">5</span></span><br>
                     <span>Sold: <span id="product1-remaining">0</span></span>
                 </div>
+            </div> -->
+            <div class="product" id="product1">
+                <img src="{{ url_for('static', filename='Dairy_Milk.jpg') }}" alt="Dairy_Milk">
+                <p>Dairy Milk</p>
+                <button onclick="addToCart('product1')">Add to Cart</button>
+                <div>
+                    <span>Price: ₹10</span><br>
+                    <span>Remaining: <span id="product1-sold">5</span></span><br>
+                    <span>Sold: <span id="product1-remaining">0</span></span>
+                </div>
             </div>
             <div class="product" id="product2">
-                <img src="{{ url_for('static', filename='Dairy_Milk.jpg') }}" alt="Product 2">
-                <p>Dairy Milk</p>
+                <img src="{{ url_for('static', filename='5_star.jpg') }}" alt="5_star">
+                <p>5 Star</p>
                 <button onclick="addToCart('product2')">Add to Cart</button>
                 <div>
                     <span>Price: ₹10</span><br>
@@ -34,23 +44,13 @@
                 </div>
             </div>
             <div class="product" id="product3">
-                <img src="{{ url_for('static', filename='5_star.jpg') }}" alt="Product 3">
-                <p>5 Star</p>
+                <img src="{{ url_for('static', filename='kitkat.png') }}" alt="kitkat">
+                <p>Kit Kat</p>
                 <button onclick="addToCart('product3')">Add to Cart</button>
                 <div>
                     <span>Price: ₹10</span><br>
                     <span>Remaining: <span id="product3-sold">5</span></span><br>
                     <span>Sold: <span id="product3-remaining">0</span></span>
-                </div>
-            </div>
-            <div class="product" id="product4">
-                <img src="{{ url_for('static', filename='kitkat.png') }}" alt="Dark Chocolate">
-                <p>Kit Kat</p>
-                <button onclick="addToCart('product4')">Add to Cart</button>
-                <div>
-                    <span>Price: ₹10</span><br>
-                    <span>Remaining: <span id="product4-sold">5</span></span><br>
-                    <span>Sold: <span id="product4-remaining">0</span></span>
                 </div>
             </div>
         </div>
