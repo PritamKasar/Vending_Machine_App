@@ -2,3 +2,8 @@ Flask
 Gunicorn
 razorpay
 pigpio
+Flask
+pigpio 
+qrcode[pil] 
+razorpay 
+Pillow
