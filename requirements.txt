@@ -4,6 +4,6 @@ razorpay
 pigpio
 Flask
 pigpio 
-qrcode[pil] 
+qrcode 
 razorpay 
 Pillow
