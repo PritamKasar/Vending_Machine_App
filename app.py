@@ -17,7 +17,7 @@ SERVO_PIN_2 = 13  # GPIO 13 (Pin 33)
 SERVO_PIN_3 = 19  # GPIO 19 (Pin 35)
 
 # Initialize the pigpio library
-pi = pigpio.pi('soft','8888')
+pi = pigpio.pi('soft',8888)
 
 # Check if the pigpio library is running
 if not pi.connected:
